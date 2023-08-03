@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Form Validation</title>
+    <style>
+        body{
+            background-color: orange;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 90vh;
+            
+        }
+        #container{
+            background-color: white;
+            padding: 50px;
+            text-align: center;
+            border-radius: 8px;
+            box-shadow: 5px 10px #888888;
+        }
+        h2{
+            margin: 0px 0px 10px 0px;
+        }
+        input{
+            width: 200px;
+            margin: 10px 0px;
+            padding: 10px;
+        }
+        input[type='submit']{
+            width: 222px;
+            background-color: orange;
+            border-radius: 8px;
+            box-shadow: 3px 6px #888888;
+            cursor: pointer;
+            font-weight: bold;
+        }
+        .error{
+            color: red;
+            margin: 0;
+            text-align: left;
+            font-weight: bold;
+        }
+        
+    </style>
+<body>
+    <div id="container">
+        <h2>Log In</h2>
+            <form action="" onsubmit="return validationForm()">  <!--agr true hoga form submit jo jayega false hone par nahi hoga -->
+            <input type="text" placeholder="User Name" id="username"><br>
+            <p id="usererror" class="error"></p>
+            <input type="password" placeholder="Password" id="password"><br>
+            <p id="passerror" class="error"></p>
+            <input type="submit">
+        </form>
+    </div>
+
+    <script>
+        let username = document.getElementById('username')
+        let password = document.getElementById('password')
+
+        function validationForm() {
+            let flag = 1;
+
+            if (username.value == '') {
+                document.getElementById('usererror').innerText = 'UserName is Required'
+                flag = 0
+            } else if(username.value.length < 3) {
+                document.getElementById('usererror').innerText = 'UserName Required Min 3 Char'
+                flag = 0
+
+            }else{
+                document.getElementById('usererror').innerText = '';
+                flag = 1
+
+            }
+
+            if (password.value == "") {
+                document.getElementById('passerror').innerText = 'PassWord is Required'
+                flag = 0
+
+            }else{
+                document.getElementById('passerror').innerText = ''
+                flag = 1 
+            }
+            
+            if (flag) {
+                return true;
+            } else {
+                return false;
+            }
+        }
+    </script>
+</body>
+</html>
+
+
+<!-- PROBLEM : ek bar usename aur password fill karne par wo form submit kar de raha hai tab bhi jab ki username ka condition match nahi ho raha hai -->
